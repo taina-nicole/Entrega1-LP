@@ -19,6 +19,10 @@ describe("descricaoCategoria", () => {
     assert.equal(descricaoCategoria("lazer"), "Lazer");
     assert.equal(descricaoCategoria("moradia"), "Moradia");
   });
+
+  it("retorna valor padrão para categoria inválida", () => {
+    assert.equal(descricaoCategoria("" as never), "Categoria inválida");
+  });
 });
 
 describe("matrizCategoriaMes", () => {
@@ -29,6 +33,15 @@ describe("matrizCategoriaMes", () => {
     assert.deepStrictEqual(matriz[1], [0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     assert.deepStrictEqual(matriz[2], [0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     assert.deepStrictEqual(matriz[3], [1200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  });
+
+  it("retorna matriz vazia para lista vazia", () => {
+    assert.deepStrictEqual(matrizCategoriaMes([]), [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
   });
 });
 
@@ -41,5 +54,13 @@ describe("formatarRelatorio", () => {
     assert.match(relatorio, /TOTAL GERAL:/);
     assert.match(relatorio, /MAIOR DESPESA:/);
     assert.match(relatorio, /Aluguel - 1200\.00/);
+  });
+
+  it("retorna texto mínimo para lista vazia", () => {
+    const relatorio = formatarRelatorio([]);
+
+    assert.match(relatorio, /RELATÓRIO DE DESPESAS/);
+    assert.match(relatorio, /TOTAL GERAL:\s+0\.00/);
+    assert.match(relatorio, /MAIOR DESPESA: Nenhuma despesa/);
   });
 });

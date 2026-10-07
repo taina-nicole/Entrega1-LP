@@ -4,8 +4,8 @@
   "description": "",
   "main": "testes.js",
   "scripts": {
-    "dev": "tsx index.ts",
-    "test": "vitest run"
+    "dev": "tsx src/index.ts",
+    "test": "tsx --test src/*.test.ts"
   },
   "repository": {
     "type": "git",

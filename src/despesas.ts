@@ -12,6 +12,7 @@ function validarDespesa(despesa: Despesa): void {
 
 export function adicionarDespesa(despesas: readonly Despesa[], nova: Despesa): Despesa[] {
   validarDespesa(nova);
+  // A função retorna uma nova lista em vez de modificar a original para preservar o contrato de imutabilidade do array recebido.
   return [...despesas, nova];
 }
 
